@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Florycell</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="admin-container">
+        <h1>Gestión de Productos</h1>
+        
+        <!-- Formulario para agregar producto -->
+        <section class="form-section">
+            <h2>Agregar Nuevo Producto</h2>
+            <form action="{{ url_for('agregar_producto') }}" method="POST" enctype="multipart/form-data">
+                <input type="text" name="nombre" placeholder="Nombre del producto" required>
+                <textarea name="descripcion" placeholder="Descripción"></textarea>
+                <input type="number" name="precio" step="0.01" placeholder="Precio" required>
+                <input type="file" name="imagen" accept="image/*">
+                <button type="submit">Agregar Producto</button>
+            </form>
+        </section>
+
+        <!-- Lista de productos -->
+        <section class="products-list">
+            <h2>Productos Existentes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.descripcion }}</td>
+                        <td>${{ producto.precio }}</td>
+                        <td>
+                            <button onclick="mostrarFormularioEdicion({{ producto.id }})">Editar</button>
+                            <a href="{{ url_for('eliminar_producto', id=producto.id) }}" 
+                               onclick="return confirm('¿Estás seguro de eliminar este producto?')">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Formulario modal para editar producto -->
+        <div id="modal-editar" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>Editar Producto</h2>
+                <form id="form-editar" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="nombre" id="edit-nombre" required>
+                    <textarea name="descripcion" id="edit-descripcion"></textarea>
+                    <input type="number" name="precio" id="edit-precio" step="0.01" required>
+                    <input type="file" name="imagen" accept="image/*">
+                    <button type="submit">Guardar Cambios</button>
+                    <button type="button" onclick="cerrarModal()">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarFormularioEdicion(id) {
+            const modal = document.getElementById('modal-editar');
+            const form = document.getElementById('form-editar');
+            const fila = event.target.closest('tr');
+            
+            // Obtener datos actuales del producto
+            const nombre = fila.cells[0].textContent;
+            const descripcion = fila.cells[1].textContent;
+            const precio = fila.cells[2].textContent.replace('$', '');
+            
+            // Llenar el formulario con los datos actuales
+            document.getElementById('edit-nombre').value = nombre;
+            document.getElementById('edit-descripcion').value = descripcion;
+            document.getElementById('edit-precio').value = precio;
+            
+            // Configurar la acción del formulario
+            form.action = '/modificar_producto/' + id;
+            
+            // Mostrar el modal
+            modal.style.display = 'block';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal-editar').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
