@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florycell y más</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#portada">Portada</a></li>
+            <li><a href="#descripcion">Descripción</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#servicio">Servicio Técnico</a></li>
+            <li><a href="#ubicacion">Dónde encontrarnos</a></li>
+            <li><a href="{{ url_for('login') }}">Ingresar</a></li>
+        </ul>
+    </nav>
+    <section id="portada">
+        <h1>Bienvenido a Florycell y más</h1>
+        <p>Tu tienda de confianza para teléfonos y reparaciones</p>
+    </section>
+    <section id="descripcion">
+        <h2>¿Quiénes somos?</h2>
+        <p>Florycell es tu mejor opción para adquirir teléfonos y servicios técnicos de calidad. Nos dedicamos a ofrecer productos y soluciones confiables para tu día a día.</p>
+    </section>
+    <section id="catalogo">
+        <h2>Catálogo de Teléfonos</h2>
+        <div id="lista-telefonos">
+            {% if productos %}
+                {% for producto in productos %}
+                <div class="tarjeta-telefono">
+                    {% if producto['imagen'] %}
+                        <img src="data:image/jpeg;base64,{{ producto['imagen'] }}" alt="{{ producto['nombre'] }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="Sin imagen">
+                    {% endif %}
+                    <h3>{{ producto['nombre'] }}</h3>
+                    <p class="descripcion">{{ producto['descripcion'] }}</p>
+                    <p class="precio">{{ producto['precio'] }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay productos disponibles en este momento.</p>
+            {% endif %}
+        </div>
+    </section>
+    <section id="servicio">
+        <h2>Servicio Técnico</h2>
+        <p>Ofrecemos reparaciones de pantalla, batería, software y más. Nuestro equipo está listo para ayudarte con cualquier problema técnico.</p>
+    </section>
+    <section id="ubicacion">
+        <h2>Dónde encontrarnos</h2>
+        <p>Dirección 1: Calle X, Ciudad Y</p>
+        <p>Dirección 2: Calle A, Ciudad B</p>
+        <p>Dirección 3: Calle C, Ciudad D</p>
+    </section>
+</body>
+</html>
