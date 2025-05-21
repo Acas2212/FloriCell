@@ -1,31 +1,39 @@
 body {
-    font-family: Arial, sans-serif;
+    background-color: #0d6efd; /* Azul principal */
     margin: 0;
     padding: 0;
 }
+
 nav {
-    background-color: #333;
-    padding: 10px 0;
+    background-color: #003eaa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
 nav ul {
-    list-style: none;
     display: flex;
     justify-content: center;
+    list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 10px 0;
 }
+
 nav ul li {
-    margin: 0 15px;
+    margin: 0 20px;
 }
+
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.2s;
 }
+
+nav ul li a:hover {
+    color: #ffc107;
+}
+
 section {
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: auto;
+    padding: 60px 20px;
 }
 #lista-telefonos {
     display: grid;
@@ -221,4 +229,388 @@ section {
 
 .modal-content button:hover {
     opacity: 0.9;
+}
+
+.hero {
+    position: relative;
+    background: url('../static/img/Logo.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    border: 3px solid #0d6efd;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* filtro oscuro para legibilidad */
+    z-index: 0;
+}
+
+.hero h1,
+.hero p,
+.hero .btn-cta {
+    position: relative;
+    z-index: 1;
+    color: white !important;  /* ← Fuerza el color blanco */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+
+.hero h1 {
+    font-size: 3.2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+
+
+.btn-cta {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: #e0a800;
+}
+
+/* ==== Alternancia de fondo entre secciones ==== */
+section:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+/* ==== CATÁLOGO DE TELÉFONOS ==== */
+#catalogo {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+#catalogo h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+#lista-telefonos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tarjeta-telefono {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-telefono:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.tarjeta-telefono img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    background-color: #f1f1f1;
+}
+
+.tarjeta-telefono h3 {
+    font-size: 1.2em;
+    color: #222;
+    margin: 15px 15px 5px;
+}
+
+.tarjeta-telefono .descripcion {
+    font-size: 0.95em;
+    color: #555;
+    margin: 0 15px 10px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.tarjeta-telefono .precio {
+    font-size: 1.3em;
+    color: #007bff;
+    font-weight: bold;
+    margin: 10px 15px 15px;
+    text-align: left;
+}
+
+.tarjeta-telefono .precio::before {
+    content: 'Q';
+    margin-right: 2px;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #0d6efd;
+}
+
+#descripcion,
+#ubicacion {
+    background-color: #f8f9fa;
+}
+
+#ubicacion p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+
+.carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+    color: white !important; /* Forzar blanco incluso si hay override por Bootstrap */
+}
+
+
+#carruselServicios {
+    max-width: 900px;  
+    margin: 0 auto;    
+}
+
+#carruselServicios .carousel-inner img {
+    height: 500px;         
+    object-fit: cover;     
+    border-radius: 12px;   
+}
+
+
+.seccion-blanca {
+    background-color: white;
+    margin: 40px auto;
+    border-radius: 16px;
+    padding: 50px 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    max-width: 1200px;
+}
+
+
+.seccion-blanca h2 {
+    color: #0d6efd;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.seccion-blanca p {
+    color: #333;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+
+.seccion-blanca .btn-cta {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.seccion-blanca .btn-cta:hover {
+    background-color: #e0a800;
+}
+
+
+#portada h1,
+#portada p {
+    color: #0d6efd;  
+}
+
+
+
+/* === LOGIN BONITO === */
+body.login-fondo {
+    background: linear-gradient(135deg, #0d6efd, #003eaa);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-card h2 {
+    color: #0d6efd;
+    margin-bottom: 30px;
+}
+
+.login-card input {
+    border-radius: 8px;
+}
+
+.login-card button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.login-card button:hover {
+    background-color: #003eaa;
+}
+
+/* === Sección de múltiples direcciones con tarjetas === */
+.seccion-ubicacion-alt {
+    background: linear-gradient(to right, #ffffff, #f4f8ff);
+    margin: 50px auto;
+    border-radius: 20px;
+    padding: 50px 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    color: #333;
+    text-align: center;
+}
+
+.ubicacion-contenido h2 {
+    color: #0d6efd;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.ubicacion-contenido p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.contenedor-direcciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.tarjeta-direccion {
+    background-color: #ffffff;
+    border-left: 5px solid #0d6efd;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: left;
+    max-width: 340px;
+    flex: 1 1 300px;
+}
+
+.tarjeta-direccion h5 {
+    color: #0d6efd;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.tarjeta-direccion p {
+    margin-bottom: 15px;
+}
+
+.btn-mapa {
+    display: inline-block;
+    background-color: #0d6efd;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-mapa:hover {
+    background-color: #003eaa;
+}
+
+.seccion-blanca,
+.seccion-ubicacion-alt {
+    border: 3px solid #0d6efd; /* Marco azul */
+    box-sizing: border-box;
+}
+
+/* === Descripción con imagen lateral === */
+.container-descripcion {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+}
+
+.descripcion-texto {
+    flex: 1 1 50%;
+}
+
+.descripcion-texto h2 {
+    color: #0d6efd;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.descripcion-texto p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.descripcion-imagen {
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+.descripcion-imagen img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
