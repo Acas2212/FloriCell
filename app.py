@@ -16,7 +16,7 @@ def login_required(f):
     return decorated_function
 
 def conectar_bd(usuario, contrasena):
-    server = 'CHALI\SQLEXPRESS'
+    server = 'AsusF15Eddy\SQLEXPRESS'
     database = 'bdFlorycell'
     try:
         conexion = pyodbc.connect(
@@ -29,7 +29,7 @@ def conectar_bd(usuario, contrasena):
 @app.route('/')
 def index():
     try:
-        conexion = conectar_bd('sa', '1234')
+        conexion = conectar_bd('sa', 'Eddy123')
         if conexion:
             cursor = conexion.cursor()
             cursor.execute("SELECT id, nombre, descripcion, precio, imagen FROM Productos")
